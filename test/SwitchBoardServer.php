@@ -8,4 +8,4 @@ $server->on('receive',function (swoole_server $server,$fd,$from_id,$data){
     echo "data" . $data . "\n" . "id" . $from_id;
     $server->send($fd,"swoole receive({$data})");
 });
-$server->start();
+$server->start('127.0.0.1', 9502);
