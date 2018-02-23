@@ -5,7 +5,7 @@ namespace src;
 /** auto load */
 use content\server\SwitchBoardServer;
 
-autoload(__DIR__ . "/content");
+seq_autoload();
 
 
 echo "server is about to start\n";
@@ -16,21 +16,24 @@ $server->start('127.0.0.1', 9502);
 
 
 
+function seq_autoload(){
+    autoload(__DIR__ . "/content/core");
+    require_once "content/protocol/Packet.php";
+    autoload(__DIR__ . "/content");
+}
 function autoload($path)
 {
-    /**
     $dir_handle = openDir($path);
 
     while (false !== $file = readDir($dir_handle)) {
         if ($file == '.' || $file == '..') continue;
         if (is_dir($path . '/' . $file)) {
-            return autoload($path . '/' . $file);
+            autoload($path . '/' . $file);
+            continue;
         }
-        echo $path . "/{$file}\n";
+        require_once $path . "/{$file}";
     }
     closeDir($dir_handle);
-     * */
-    require_once 'content/core/TCPServer.php';
-    require_once 'content/core/Logger.php';
-    require_once 'content/server/SwitchBoardServer.php';
 }
+
+
