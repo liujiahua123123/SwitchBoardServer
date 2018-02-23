@@ -1,36 +1,25 @@
 <?php
 namespace content\core;
-abstract class TCPServerBase{
-
+abstract class TCPServer{
     /** @var \swoole_server */
     public $swoole = null;
 
     protected $setting = [];
 
-    public function __construct()
-    {
-
-    }
-
-
     public function start($ip,$port){
         $this->onLoad();
         $this->swoole = new \swoole_server($ip,$port);
         if(count($this->setting)!==0)$this->swoole->set($this->setting);
+        $this->swoole->on('Start',array($this,'onStart'));
+        $this->swoole->on('Receive',[$this,'onReceive']);
+        $this->swoole->on('Connect',[$this,'onConnect']);
+        $this->swoole->on('Close',[$this,'onClose']);
         $this->swoole->start();
-        $this->swoole->on('receive',[$this,'onReceive']);
-        $this->swoole->on('connect',[$this,'onConnect']);
-        $this->swoole->on('close',[$this,'onClose']);
-        $this->onStart();
     }
 
 
     public function isStart(){
         return $this->swoole !== null;
-    }
-
-    public function onReady(){
-
     }
 
 
@@ -42,12 +31,6 @@ abstract class TCPServerBase{
     public function setting($setting){
 
     }
-
-    abstract function onReceive($swoole,$fd,$from_id,$data);
-
-    abstract function onConnect($swoole,$fd);
-
-    abstract function onClose($swoole,$fd);
 
     public function log($message){
         Logger::log($message);
@@ -63,6 +46,4 @@ abstract class TCPServerBase{
     public function send($fd,$data,$fromId = 0){
         $this->swoole->send($fd,$data,$fromId);
     }
-
-
 }

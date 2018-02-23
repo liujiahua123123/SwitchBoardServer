@@ -1,13 +1,12 @@
 <?php
 namespace content\server;
-use content\core\TCPServerBase;
+use content\core\Logger;
+use content\core\TCPServer;
 
-class SwitchBoardServer extends TCPServerBase{
+class SwitchBoardServer extends TCPServer {
 
-
-    public function onReady()
-    {
-        $this->log("SwitchBoardServer: ready");
+    public function onStart(){
+        $this->log("SwitchBoardServer: start");
     }
 
     function onReceive($swoole, $fd, $from_id, $data)
@@ -24,4 +23,5 @@ class SwitchBoardServer extends TCPServerBase{
     {
         $this->log("SwitchBoardServer disconnected by: " . $fd);
     }
+
 }

@@ -30,7 +30,7 @@ function autoload($path)
     }
     closeDir($dir_handle);
      * */
+    require_once 'content/core/TCPServer.php';
     require_once 'content/core/Logger.php';
-    require_once 'content/core/TCPServerBase.php';
     require_once 'content/server/SwitchBoardServer.php';
 }
