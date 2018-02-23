@@ -4,21 +4,22 @@ namespace content\protocol\defaults;
 use content\protocol\Packet;
 
 class ServerPongPacket extends Packet {
+    const NETWORK_ID = 1;
 
-    protected $message = "+PONG";
-    public $note = "connected";
+    public $message = "+PONG";
+    public $note = 0;
 
 
     function encode()
     {
         $this->putString($this->message);
-        $this->putString($this->note);
+        $this->putInt($this->note);
     }
 
     function decode()
     {
         $this->message = $this->getString();
-        $this->note = $this->getString();
+        $this->note = $this->getInt();
     }
 
 }

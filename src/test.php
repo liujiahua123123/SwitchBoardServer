@@ -13,10 +13,19 @@ seq_autoload();
 echo "server is about to start\n";
 flush();
 sleep(1);
-
-
+/*
 $server = new SwitchBoardServer();
 $server->start('127.0.0.1', 9502);
+*/
+$pk = new ServerPongPacket();
+$pk->note = 1;
+$pk->message = "message";
+Packet::encodePacket($pk);
+Packet::decodePacket($pk);
+echo $pk->getNetworkId(). "\n";
+echo $pk->message. "\n";
+echo $pk->note. "\n";
+
 
 
 function seq_autoload(){
