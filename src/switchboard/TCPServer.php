@@ -2,6 +2,7 @@
 namespace switchboard;
 
 use switchboard\utils\Logger;
+use switchboard\utils\LogLevel;
 
 abstract class TCPServer{
     /** @var \swoole_server */
@@ -35,8 +36,8 @@ abstract class TCPServer{
 
     }
 
-    public function log($message){
-        Logger::log($message);
+    public function log($message,$level = LogLevel::INFO){
+        Logger::log($message,$level);
     }
 
     public function closeConnection($fd){
