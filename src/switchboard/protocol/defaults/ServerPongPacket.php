@@ -13,6 +13,7 @@ class ServerPongPacket extends Packet {
 
     function encode()
     {
+        $this->reset();
         $this->putString($this->message);
         $this->putInt($this->note);
     }

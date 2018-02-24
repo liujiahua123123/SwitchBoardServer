@@ -24,19 +24,14 @@ abstract class Packet extends BinaryStream {
         parent::__construct($buffer, $offset);
     }
 
-
-    public static function encodePacket(Packet $packet){
-        $packet->reset();
-        $packet->putInt($packet->getNetworkId());
-        $packet->encode();
-        return $packet;
+    public function reset()
+    {
+        parent::reset();
+        $this->putByte(self::NETWORK_ID);
     }
 
-    public static function decodePacket(Packet $packet){
-        $netWork = $packet->getInt();
-        $packet->decode();
-        return $packet;
+    public static function readPacketNetworkID(Packet $packet){
+        return $packet->getByte();
     }
-
 
 }
