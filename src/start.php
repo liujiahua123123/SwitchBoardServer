@@ -2,18 +2,19 @@
 namespace src;
 
 
+/** auto load */
 require_once __DIR__."/osmiumDB/SimpleClassLoader.php";
 $loader = new \OsmiumDB\SimpleClassLoader();
 $loader->readPath(__DIR__."/",true);
-/** auto load */
+
 use content\protocol\defaults\ServerPongPacket;
 use content\protocol\Packet;
 use content\server\SwitchBoardServer;
 use osmiumDB\localStorage\JSON;use osmiumDB\SimpleClassLoader;
 
-const PROTOCOL_VERSION = 1;
-const SERVER_VERSION = 1;
-const SERVER_ROLE = 1;
+define("PROTOCOL_VERSION",1);
+define("SERVER_VERSION",1);
+define("SERVER_ROLE",1);
 const CONFIG_FILE = "config.json";
 
 seq_autoload();
