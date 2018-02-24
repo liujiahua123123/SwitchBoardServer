@@ -6,7 +6,7 @@ use content\core\TCPServer;
 class SwitchBoardServer extends TCPServer {
 
     public function onStart(){
-        $this->log("SwitchBoardServer: start");
+        $this->log("SwitchBoardServer:: start on protocol ".PROTOCOL_VERSION);
     }
 
     function onReceive($swoole, $fd, $from_id, $data)
