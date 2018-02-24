@@ -2,12 +2,14 @@
 namespace src;
 
 
-require_once __DIR__."osmiumDB/localStorage/JSON.php";
+require_once __DIR__."/osmiumDB/SimpleClassLoader.php";
+$loader = new \OsmiumDB\SimpleClassLoader();
+$loader->readPath(__DIR__."/",true);
 /** auto load */
 use content\protocol\defaults\ServerPongPacket;
 use content\protocol\Packet;
 use content\server\SwitchBoardServer;
-use osmiumDB\localStorage\JSON;
+use osmiumDB\localStorage\JSON;use osmiumDB\SimpleClassLoader;
 
 const PROTOCOL_VERSION = 1;
 const SERVER_VERSION = 1;
@@ -30,38 +32,18 @@ $json->save();//保存
 $config = $json->getAll();
 
 
-echo "server is about to start\nconfig info:";
+echo "server is about to start\nconfig info:\n";
 var_dump($config);
 flush();
 sleep(1);
-echo "protocol version ".PROTOCOL_VERSION;
-echo "server role".SERVER_ROLE;
-echo "please check key in config.json";
+echo "\nprotocol version | ".PROTOCOL_VERSION;
+echo "\nserver role | ".SERVER_ROLE;
+echo "\nplease check key in config.json\n";
 
 
 $server = new SwitchBoardServer();
 $server->start('127.0.0.1', $config["port"]);
 
-
-function seq_autoload(){
-    autoload(__DIR__ . "/content/core");
-    require_once "content/protocol/Packet.php";
-    autoload(__DIR__ . "/content");
-}
-
-function autoload($path){
-    $dir_handle = openDir($path);
-
-    while (false !== $file = readDir($dir_handle)) {
-        if ($file == '.' || $file == '..') continue;
-        if (is_dir($path . '/' . $file)) {
-            autoload($path . '/' . $file);
-            continue;
-        }
-        require_once $path . "/{$file}";
-    }
-    closeDir($dir_handle);
-}
 
 
 function generate_password( $length = 8 ){
