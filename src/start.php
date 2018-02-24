@@ -26,8 +26,6 @@ $config = [
 ];
 
 $json = new JSON(__DIR__.CONFIG_FILE,$config);
-$json->setDefault();//如果没有内容就写入默认值
-$json->save();//保存
 //加载config
 $config = $json->getAll();
 

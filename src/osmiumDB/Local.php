@@ -31,6 +31,10 @@ abstract class Local extends Database{
      */
     public function __construct($file,$default = null){
         $this->file = $file;
+        if(!file_exists($file)){
+            $this->setDefault();
+            $this->save();
+        }
         $this->setToStorage();
         $this->default = $default;
     }
