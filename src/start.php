@@ -22,7 +22,7 @@ $config = [
     "key"=>generate_password()
 ];
 
-$json = new JSON(__DIR__.CONFIG_FILE,$config);
+$json = new JSON(__DIR__."/".CONFIG_FILE,$config);
 //加载config
 $config = $json->getAll();
 
