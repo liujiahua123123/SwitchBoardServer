@@ -1,5 +1,5 @@
 <?php
-namespace content\core;
+namespace switchboard\protocol\binary;
 @define("ENDIANNESS", (pack("d", 1) === "\77\360\0\0\0\0\0\0" ? Binary::BIG_ENDIAN : Binary::LITTLE_ENDIAN));
 @define("INT32_MASK", is_int(0xffffffff) ? 0xffffffff : -1);
 /* @author PocketMine Team */

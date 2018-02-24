@@ -1,7 +1,5 @@
 <?php
-namespace content\server;
-use content\core\Logger;
-use content\core\TCPServer;
+namespace switchboard;
 
 class SwitchBoardServer extends TCPServer {
 

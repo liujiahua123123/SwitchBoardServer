@@ -1,5 +1,5 @@
 <?php
-namespace content\core;
+namespace switchboard\protocol\binary;
 /** @author PocketMine Team */
 
 

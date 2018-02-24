@@ -75,12 +75,12 @@ class Server
      *
      * 连接迭代器依赖pcre库，未安装pcre库无法使用此功能
      *
-     *      foreach($server->connections as $fd)
+     *      foreach($switchboard->connections as $fd)
      *      {
-     *          $server->send($fd, "hello");
+     *          $switchboard->send($fd, "hello");
      *      }
      *
-     *      echo "当前服务器共有 ".count($server->connections). " 个连接\n";
+     *      echo "当前服务器共有 ".count($switchboard->connections). " 个连接\n";
      *
      * @var array
      */
@@ -216,9 +216,9 @@ class Server
      * 示例
      *
      *      //向IP地址为220.181.57.216主机的9502端口发送一个hello world字符串。
-     *      $server->sendto('220.181.57.216', 9502, "hello world");
+     *      $switchboard->sendto('220.181.57.216', 9502, "hello world");
      *      //向IPv6服务器发送UDP数据包
-     *      $server->sendto('2600:3c00::f03c:91ff:fe73:e98f', 9501, "hello world", true);
+     *      $switchboard->sendto('2600:3c00::f03c:91ff:fe73:e98f', 9501, "hello world", true);
      *
      * server必须监听了UDP的端口，才可以使用swoole_server->sendto
      * server必须监听了UDP6的端口，才可以使用swoole_server->sendto向IPv6地址发送数据

@@ -7,10 +7,8 @@ require_once __DIR__."/osmiumDB/SimpleClassLoader.php";
 $loader = new \OsmiumDB\SimpleClassLoader();
 $loader->readPath(__DIR__."/",true);
 
-use content\protocol\defaults\ServerPongPacket;
-use content\protocol\Packet;
-use content\server\SwitchBoardServer;
-use osmiumDB\localStorage\JSON;use osmiumDB\SimpleClassLoader;
+use osmiumDB\localStorage\JSON;
+use switchboard\SwitchBoardServer;
 
 define("PROTOCOL_VERSION",1);
 define("SERVER_VERSION",1);
@@ -22,7 +20,7 @@ seq_autoload();
 //config部分
 $config = [
     "port"=>9502,
-    "server-name"=>"switchboard",
+    "switchboard-name"=>"switchboard",
     "key"=>generate_password()
 ];
 
@@ -31,14 +29,13 @@ $json = new JSON(__DIR__.CONFIG_FILE,$config);
 $config = $json->getAll();
 
 
-echo "server is about to start\nconfig info:\n";
+echo "switchboard is about to start\nconfig info:\n";
 var_dump($config);
 flush();
 sleep(1);
 echo "\nprotocol version | ".PROTOCOL_VERSION;
-echo "\nserver role | ".SERVER_ROLE;
+echo "\nswitchboard role | ".SERVER_ROLE;
 echo "\nplease check key in config.json\n";
-
 
 $server = new SwitchBoardServer();
 $server->start('127.0.0.1', $config["port"]);

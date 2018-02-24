@@ -726,18 +726,18 @@ class swoole_redis_server extends Swoole\Redis\Server
 /**
  * @desc 内置 Websocket 服务器
  *
- * $server = new swoole_websocket_server("0.0.0.0", 11521);
- * $server->on("open", function(swoole_websocket_server $server, $request){
+ * $switchboard = new swoole_websocket_server("0.0.0.0", 11521);
+ * $switchboard->on("open", function(swoole_websocket_server $switchboard, $request){
  *      $request->fd     客户端的socket id
  * });
- * $server->on("message", function(swoole_websocket_server $server, swoole_websocket_frame $frame){
- *      $frame->fd       客户端的socket id，使用$server->push推送数据时需要用到
+ * $switchboard->on("message", function(swoole_websocket_server $switchboard, swoole_websocket_frame $frame){
+ *      $frame->fd       客户端的socket id，使用$switchboard->push推送数据时需要用到
  *      $frame->data     数据内容，可以是文本内容也可以是二进制数据，可以通过opcode的值来判断
  *      $frame->opcode   WebSocket的OpCode类型，可以参考WebSocket协议标准文档
  *      $frame->finish   表示数据帧是否完整，一个WebSocket请求可能会分成多个数据帧进行发送
  * });
- * $server->on("close", function(){
- *      $fd 客户端的socket id，使用$server->push推送数据时需要用到
+ * $switchboard->on("close", function(){
+ *      $fd 客户端的socket id，使用$switchboard->push推送数据时需要用到
  * });
  */
 class swoole_websocket_server extends Swoole\WebSocket\Server

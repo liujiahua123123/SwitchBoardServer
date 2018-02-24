@@ -1,7 +1,7 @@
 <?php
-namespace content\protocol;
+namespace switchboard\protocol;
 
-use content\core\BinaryStream;
+use switchboard\protocol\binary\BinaryStream;
 
 abstract class Packet extends BinaryStream {
     const NETWORK_ID = 0;

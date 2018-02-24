@@ -10,12 +10,12 @@ use content\server\SwitchBoardServer;
 seq_autoload();
 
 
-echo "server is about to start\n";
+echo "switchboard is about to start\n";
 flush();
 sleep(1);
 /*
-$server = new SwitchBoardServer();
-$server->start('127.0.0.1', 9502);
+$switchboard = new SwitchBoardServer();
+$switchboard->start('127.0.0.1', 9502);
 */
 $pk = new ServerPongPacket();
 $pk->note = 1;
@@ -29,9 +29,9 @@ echo $pk->note. "\n";
 
 
 function seq_autoload(){
-    autoload(__DIR__ . "/content/core");
-    require_once "content/protocol/Packet.php";
-    autoload(__DIR__ . "/content");
+    autoload(__DIR__ . "/switchboard/core");
+    require_once "switchboard/protocol/Packet.php";
+    autoload(__DIR__ . "/switchboard");
 }
 function autoload($path)
 {

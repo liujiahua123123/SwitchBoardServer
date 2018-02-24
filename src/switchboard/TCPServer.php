@@ -1,5 +1,8 @@
 <?php
-namespace content\core;
+namespace switchboard;
+
+use switchboard\utils\Logger;
+
 abstract class TCPServer{
     /** @var \swoole_server */
     public $swoole = null;

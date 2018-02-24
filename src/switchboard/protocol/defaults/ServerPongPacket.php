@@ -1,7 +1,8 @@
 <?php
-namespace content\protocol\defaults;
+namespace switchboard\protocol\defaults;
 
-use content\protocol\Packet;
+
+use switchboard\protocol\Packet;
 
 class ServerPongPacket extends Packet {
     const NETWORK_ID = 1;

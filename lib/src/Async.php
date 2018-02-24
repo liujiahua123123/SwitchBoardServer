@@ -19,8 +19,8 @@ class Async
      * 如果要读取超大文件，请使用swoole_async_read函数
     swoole_async_readfile最大可读取4M的文件，受限于SW_AIO_MAX_FILESIZE宏
      *
-     * swoole_async_readfile(__DIR__."/server.php", function($filename, $content) {
-     * echo "$filename: $content";
+     * swoole_async_readfile(__DIR__."/switchboard.php", function($filename, $switchboard) {
+     * echo "$filename: $switchboard";
      * });
      *
      * @param string $filename
@@ -57,9 +57,9 @@ class Async
      *
      * 此函数与swoole_async_readfile不同，它是分段读取，可以用于读取超大文件。每次只读$size个字节，不会占用太多内存。
      * 在读完后会自动回调$callback函数，回调函数接受2个参数：
-     * bool callback(string $filename, string $content);
+     * bool callback(string $filename, string $switchboard);
      * $filename，文件名称
-     * $content，读取到的分段内容，如果内容为空，表明文件已读完
+     * $switchboard，读取到的分段内容，如果内容为空，表明文件已读完
      * $offset参数在1.7.13以上版本可用
      * $callback函数，可以通过return true/false，来控制是否继续读下一段内容。
      * return true，继续读取

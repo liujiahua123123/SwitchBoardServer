@@ -70,11 +70,11 @@ class Mysql
 
     /**
      * $config = array(
-     * 'host' => '192.168.56.102', // the host for mysql server ,support ipv4,ipv6 or unix sock.
+     * 'host' => '192.168.56.102', // the host for mysql switchboard ,support ipv4,ipv6 or unix sock.
      * 'user' => 'test', // mysql user name
      * 'password' => 'test', // password for mysql
      * 'database' => 'test', // the database
-     * 'charset' => 'utf8', // choice, if not given, the server charset used
+     * 'charset' => 'utf8', // choice, if not given, the switchboard charset used
      * );
      * function callback(\Swoole\Mysql $db, bool $result) {
      * }
