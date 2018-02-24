@@ -5,23 +5,18 @@ namespace switchboard\protocol\defaults;
 use switchboard\protocol\Packet;
 
 class ServerPongPacket extends Packet {
-    const NETWORK_ID = 1;
+    const NETWORK_ID = 2;
 
     public $message = "+PONG";
-    public $note = 0;
-
 
     function encode()
     {
         $this->reset();
         $this->putString($this->message);
-        $this->putInt($this->note);
     }
 
     function decode()
     {
         $this->message = $this->getString();
-        $this->note = $this->getInt();
     }
-
 }
