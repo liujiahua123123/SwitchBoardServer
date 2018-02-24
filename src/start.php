@@ -1,11 +1,10 @@
 <?php
 namespace src;
 
-
 /** auto load */
-require_once __DIR__."/osmiumDB/SimpleClassLoader.php";
-$loader = new \OsmiumDB\SimpleClassLoader();
-$loader->readPath(__DIR__."/",true);
+spl_autoload_register(function ($target_name) {
+    require_once __DIR__ . "/". str_replace("\\","/",$target_name) . ".php";
+});
 
 use osmiumDB\localStorage\JSON;
 use switchboard\SwitchBoardServer;
@@ -15,7 +14,6 @@ define("SERVER_VERSION",1);
 define("SERVER_ROLE",1);
 const CONFIG_FILE = "config.json";
 
-seq_autoload();
 
 //config部分
 $config = [
